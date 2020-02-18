@@ -2,18 +2,28 @@
 <html>
   <head>
     <title>Blog</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
   </head>
-
   <body>
+    <nav class="navbar navbar-inverse">
+      <%= link_to 'Blog', root_path, class: 'navbar-brand' %>
+      <div class="container">
+        <p class="navbar-text navbar-right">
+          <% if user_signed_in? %>
+          <%= link_to 'New Post', new_post_path, class: 'navbar-link' %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+          <% else %>
 
-    <%= yield %>
+          <%= link_to 'Admin Login', new_user_session_path, class: 'navbar-link' %>
+          <% end %>
+        </p>
+      </div>
+    </nav>
+    <div class="col-md-10 col-md-offset-1">
+      <%= yield %>
+    </div>
   </body>
 </html>
+
