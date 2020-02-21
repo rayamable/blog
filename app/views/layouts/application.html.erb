@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Blog</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= csrf_meta_tags %>
-</head>
-    <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-         <%= link_to 'MY BLOG', root_path, class: 'navbar-brand' %>
-         <br>
-         <br>
-         <% if user_signed_in? %>
-         <%= link_to 'New Post', new_post_path, class: 'nav navbar-brand ml-auto' %>
-         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'navbar-brand' %>
-         <% else %>
-          <%= link_to 'Admin Login', new_user_session_path, class: 'nav navbar-brand ml-auto' %>
-         <% end %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
-     <div class="col-md-10 col-md-offset-1">
-       <%= yield %>
-     </div>
+  <head>
+    <title>Blog</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse">
+    <%= link_to 'My Blog', root_path, class: 'navbar-brand' %>
+    <div class="container">
+      <p class="navbar-text navbar-right">
+        <% if user_signed_in? %>
+        <%= link_to 'New Post', new_post_path, class: 'navbar-link' %>
+        <% else %>
+        <%= link_to 'Admin Login', new_user_session_path, class: 'navbar-link' %>
+        <% end %>
+      </p>
+    </div>
+  </nav>
+  <div class="col-md-10 col-md-offset-1">
+    <%= yield %>
+  </div>
   </body>
 </html>
-
